@@ -2,70 +2,99 @@
     <div class="body">
         <img class="logo" src="../../../assets/img/login.png" alt="img-login">
         <h1>Registrar</h1>
+        <form [formGroup] ="registro">
         <div class="form-floating mb-3">
-            <input type="text" class="form-control" placeholder="Ingrese Nombre">
+            <input type="text" class="form-control" placeholder="Ingrese Nombre"
+            formControlName="Nombre" autocomplete="nope" required>
             <label> </label>
         </div>
         <div class="form-floating mb-3">
-            <input type="text" class="form-control" placeholder="Apellido Paterno">
-            <label>  </label>
+            <input type="text" class="form-control" placeholder="Apellido Paterno"
+            formControlName="ApellidoPaterno" autocomplete="nope" required>
+          <label>  </label>
         </div>
         <div class="form-floating mb-3">
-            <input type="text" class="form-control" placeholder="Apellido Materno">
+            <input type="text" class="form-control" placeholder="Apellido Materno"
+            formControlName="ApellidoMaterno" autocomplete="nope" required>
             <label> </label>
         </div>
         <div class="form-floating mb-3">
-            <input type="text" class="form-control" placeholder="Curp">
+            <input type="text" class="form-control" placeholder="Curp"
+            formControlName="Curp" autocomplete="nope" required>
+            <label class="text-danger" *ngIf="registro.controls['Curp'].hasError('minlength')">
+              La curp debe tener 18 digitos.
+          </label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" placeholder="Genero"
+            formControlName="Genero" autocomplete="nope" required>
             <label> </label>
         </div>
         <div class="form-floating mb-3">
-            <input type="text" class="form-control" placeholder="Genero">
+            <input type="text" class="form-control" placeholder="Estado Civil"
+            formControlName="EstadoCivil" autocomplete="nope" required>
             <label> </label>
         </div>
         <div class="form-floating mb-3">
-            <input type="text" class="form-control" placeholder="Estado Civil">
+            <input type="text" class="form-control" placeholder="Estado"
+            formControlName="Estado" autocomplete="nope" required>
             <label> </label>
         </div>
         <div class="form-floating mb-3">
-            <input type="text" class="form-control" placeholder="Estado">
+            <input type="text" class="form-control" placeholder="Municipio"
+            formControlName="Municipio" autocomplete="nope" required>
             <label> </label>
         </div>
         <div class="form-floating mb-3">
-            <input type="text" class="form-control" placeholder="Municipio">
+            <input type="text" class="form-control" placeholder="Colonia"
+            formControlName="Colonia" autocomplete="nope" required>
             <label> </label>
         </div>
         <div class="form-floating mb-3">
-            <input type="text" class="form-control" placeholder="Colonia">
+            <input type="text" class="form-control" placeholder="Direccion"
+            formControlName="Direccion" autocomplete="nope" required>
             <label> </label>
         </div>
         <div class="form-floating mb-3">
-            <input type="text" class="form-control" placeholder="Direccion">
+            <input type="text" class="form-control" placeholder="Telefono"
+            formControlName="Telefono" autocomplete="nope" required>
             <label> </label>
         </div>
         <div class="form-floating mb-3">
-            <input type="text" class="form-control" placeholder="Telefono">
+            <input type="email" class="form-control" placeholder="Email"
+            formControlName="Email" autocomplete="nope" required>
             <label> </label>
         </div>
         <div class="form-floating mb-3">
-            <input type="text" class="form-control" placeholder="Email">
+            <input type="text" class="form-control" placeholder="Fecha Nacimiento"
+            formControlName="FechaNacimiento" autocomplete="nope" required>
             <label> </label>
         </div>
         <div class="form-floating mb-3">
-            <input type="text" class="form-control" placeholder="Fecha Nacimiento">
+            <input type="text" class="form-control" placeholder="Matricula"
+            formControlName="matricula" autocomplete="nope" required>
             <label> </label>
         </div>
         <div class="form-floating mb-3">
-            <input type="text" class="form-control" placeholder="Matricula">
-            <label> </label>
-        </div>
-        <div class="form-floating mb-3">
-            <input type="text" class="form-control" placeholder="Contraseña">
-            <label> </label>
-        </div>
+            <input type="password" class="form-control" placeholder="Contraseña"
+            formControlName="contraseña" autocomplete="nope" required>
+            <label class="text-danger" *ngIf="registro.controls['contraseña'].hasError('minlength')">
+              La contraseña debe contener al menos 8 caracteres.
+          </label>
+          <label class="text-danger" *ngIf="registro.controls['contraseña'].hasError('maxlength')">
+              La contraseña no debe ser mayor a 16 caracteres.
+          </label>
 
-
-
-
+            <label> </label>
+        </div>
+        <div><br><br>
+          <button type="submit" class="btn btn-primary btn-lg btn-block"
+          [disabled]="!registro.valid" (click) = "onRegister(registro.value)">Registrar</button>
+          <button type="submit" class="btn btn-danger btn-lg btn-block"
+              (click)="cancel()">Cancelar</button>
+      </div>
+      </form>
+      <br><br>
         <div class="d-grid gap-2">
             <button type="button" class="btn btn-primary btn-lg" routerLink="/login"> Regresar  </button>
         </div>
